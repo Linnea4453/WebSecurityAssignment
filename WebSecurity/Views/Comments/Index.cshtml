@@ -1,0 +1,24 @@
+﻿@using System.Web
+@model IEnumerable<WebSecurity.Models.Comment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>This i where you try to hack this site with cross site script! Good Luck!</h4>
+
+
+
+<p>
+
+    <a class="create" asp-action="Create">Create New</a>
+</p>
+
+@foreach (var comment in Model)
+{
+    <div class="comment">
+        <div class="content m-2">@Html.Raw(comment.Content)</div>
+        <div class="m-2">@comment.TimeStamp</div>
+    </div>
+}
+

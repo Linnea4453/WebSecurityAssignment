@@ -1,0 +1,38 @@
+﻿@model IEnumerable<WebSecurity.Models.AddFile>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>This i where you upload and download a file, in a safe way!</h4>
+<form id="uploadForm" asp-action="UploadFile" asp-controller="AddFiles"
+      enctype="multipart/form-data" method="post" onsubmit="AJAXSubmit(this); return false;">
+    <dl>
+
+        <dd>
+            <input class="create " id="file" name="file" type="file">
+        </dd>
+    </dl>
+    <input class="btn create " type="submit" value="Upload" />
+    <div style="margin-top:15px">
+        <output form="uploadForm" name="result"></output>
+    </div>
+</form>
+
+
+@foreach (var item in Model)
+{
+<div>
+    <div class="comment">
+        <div class="content m-2"> Name: @Html.DisplayFor(modelItem => item.UntrustedName)</div>
+        <div class="m-2"> @item.TimeStamp</div>
+        <div class="m-2"> size:  @Html.DisplayFor(modelItem => item.Size)</div>
+        <div class="d-flex flex-row-reverse ">
+            <a class="create m-2" asp-action="Download" asp-route-id="@item.Id">Download</a>
+            <a class="create m-2 " asp-route-id="@item.Id">Delete</a>
+        </div>
+    </div>
+</div>
+}
+
+
